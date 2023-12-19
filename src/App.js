@@ -1,33 +1,25 @@
 import Day from "./component/Day";
 import DayList from "./component/DayList";
 import Header from "./component/Header";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EmptyPage from "./component/EmptyPage";
 import CreateWord from "./component/CreateWord";
 import CreateDay from "./component/CreateDay";
 
+// json-server 구동 명령어
+// json-server --watch ./src/db/data.json --port 3001
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
-        <Switch>
-          <Route exact path="/">
-            <DayList />
-          </Route>
-          <Route path="/day/:day">
-            <Day />
-          </Route>
-          <Route path="/create_word">
-            <CreateWord />
-          </Route>
-          <Route path="/create_day">
-            <CreateDay />
-          </Route>
-          <Route>
-            <EmptyPage />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={ <DayList /> } />
+          <Route path="/day/:day" element={ <Day /> } />
+          <Route path="/create_word" element={ <CreateWord /> } />
+          <Route path="/create_day" element={ <CreateDay /> } />
+          <Route element={ <EmptyPage /> } />
+        </Routes>
       </div>
     </BrowserRouter>
   );
